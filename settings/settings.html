@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="settings.css">
+  <title>AI Monkey - Settings</title>
+</head>
+<body>
+  <div class="settings-page">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <a href="../dashboard/dashboard.html" class="back-link" title="Back to Dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </a>
+        <span class="monkey-emoji">&#x1F435;</span>
+        <h1>Settings</h1>
+      </div>
+      <div class="header-right">
+        <button id="save-btn" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/>
+            <polyline points="17 21 17 13 7 13 7 21"/>
+            <polyline points="7 3 7 8 15 8"/>
+          </svg>
+          Save Settings
+        </button>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="settings-main">
+
+      <!-- API Configuration -->
+      <section class="section-card">
+        <h2 class="section-title">API Configuration</h2>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="provider" class="form-label">Provider</label>
+            <select id="provider" class="form-select">
+              <!-- Populated by JS from PROVIDERS config -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="model" class="form-label">Model</label>
+            <select id="model" class="form-select">
+              <!-- Populated dynamically based on selected provider -->
+            </select>
+          </div>
+
+          <div class="form-group full-width" id="custom-model-group" hidden>
+            <label for="custom-model" class="form-label">Custom Model ID</label>
+            <input type="text" id="custom-model" class="form-input" placeholder="Enter model identifier...">
+            <span class="form-hint">Enter the exact model ID from your provider's documentation.</span>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="api-key" class="form-label">API Key</label>
+            <div class="password-wrapper">
+              <input type="password" id="api-key" class="form-input" placeholder="sk-...">
+              <button type="button" id="toggle-key" class="btn-eye" title="Toggle visibility">
+                <svg id="eye-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <svg id="eye-closed" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden>
+                  <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/>
+                  <line x1="1" y1="1" x2="23" y2="23"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <div class="test-row">
+              <button id="test-btn" class="btn btn-success">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                Test Connection
+              </button>
+              <span id="test-result" class="test-result"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Defaults -->
+      <section class="section-card">
+        <h2 class="section-title">Defaults</h2>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="default-runat" class="form-label">Default Run At</label>
+            <select id="default-runat" class="form-select">
+              <option value="document-start">document-start</option>
+              <option value="document-end">document-end</option>
+              <option value="document-idle">document-idle</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Cache Enabled</label>
+            <div class="toggle-row">
+              <label class="toggle">
+                <input type="checkbox" id="cache-enabled">
+                <span class="toggle-slider"></span>
+              </label>
+              <span id="cache-label" class="toggle-label">Enabled</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Google Drive Sync -->
+      <section class="section-card">
+        <h2 class="section-title">Google Drive Backup</h2>
+
+        <div class="data-actions">
+          <div class="data-action">
+            <div class="data-info">
+              <span class="data-label">Status</span>
+              <span id="gdrive-status" class="data-count">Not connected</span>
+            </div>
+            <button id="gdrive-connect-btn" class="btn btn-success">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              Connect Google Drive
+            </button>
+          </div>
+
+          <div class="data-action">
+            <div class="data-info">
+              <span class="data-label">Last Backup</span>
+              <span id="gdrive-last-backup" class="data-count">Never</span>
+            </div>
+            <button id="gdrive-backup-btn" class="btn btn-subtle" disabled>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              Backup Now
+            </button>
+          </div>
+
+          <div class="data-action">
+            <div class="data-info">
+              <span class="data-label">Restore</span>
+              <span class="data-count">Download scripts from Google Drive</span>
+            </div>
+            <button id="gdrive-restore-btn" class="btn btn-subtle" disabled>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Restore from Backup
+            </button>
+          </div>
+
+          <div class="data-action">
+            <div class="data-info">
+              <span class="data-label">Disconnect</span>
+              <span class="data-count">Remove Google Drive access</span>
+            </div>
+            <button id="gdrive-disconnect-btn" class="btn btn-danger" disabled>Disconnect</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data -->
+      <section class="section-card">
+        <h2 class="section-title">Data</h2>
+
+        <div class="data-actions">
+          <div class="data-action">
+            <div class="data-info">
+              <span class="data-label">Cache</span>
+              <span id="cache-count" class="data-count">0 entries</span>
+            </div>
+            <button id="clear-cache-btn" class="btn btn-subtle">Clear Cache</button>
+          </div>
+
+          <div class="data-action">
+            <div class="data-info">
+              <span class="data-label">Logs</span>
+              <span id="log-count" class="data-count">0 entries</span>
+            </div>
+            <button id="clear-logs-btn" class="btn btn-subtle">Clear Logs</button>
+          </div>
+
+          <div class="data-action">
+            <div class="data-info">
+              <span class="data-label">Scripts</span>
+              <span class="data-count">Export all scripts as JSON</span>
+            </div>
+            <button id="export-btn" class="btn btn-subtle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              Export All Scripts
+            </button>
+          </div>
+
+          <div class="data-action danger-zone">
+            <div class="data-info">
+              <span class="data-label">Reset</span>
+              <span class="data-count">Restore all settings to defaults</span>
+            </div>
+            <button id="reset-btn" class="btn btn-danger">Reset Settings</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Confirm modal -->
+    <div id="confirm-modal" class="modal-overlay" hidden>
+      <div class="modal">
+        <h3 class="modal-title" id="confirm-title">Confirm</h3>
+        <p class="modal-body" id="confirm-body">Are you sure?</p>
+        <div class="modal-actions">
+          <button id="confirm-cancel" class="btn btn-subtle">Cancel</button>
+          <button id="confirm-ok" class="btn btn-danger">Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" hidden></div>
+  </div>
+
+  <script src="settings.js" type="module"></script>
+</body>
+</html>

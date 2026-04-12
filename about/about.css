@@ -1,0 +1,464 @@
+/* about.css - AI Monkey about / features page */
+
+:root {
+  --bg: #1a1b2e;
+  --surface: #252640;
+  --surface-hover: #2d2e4a;
+  --border: #353656;
+  --primary: #6366f1;
+  --primary-muted: rgba(99, 102, 241, 0.15);
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --success: #22c55e;
+  --success-bg: rgba(34, 197, 94, 0.12);
+  --warning: #f59e0b;
+  --warning-bg: rgba(245, 158, 11, 0.12);
+  --blue: #3b82f6;
+  --blue-bg: rgba(59, 130, 246, 0.12);
+  --pink: #ec4899;
+  --pink-bg: rgba(236, 72, 153, 0.12);
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.about-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.back-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 24px;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+
+.back-link:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.monkey-emoji { font-size: 28px; }
+
+.header h1 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.version-badge {
+  background: var(--primary-muted);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tab:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.tab.active {
+  background: var(--primary-muted);
+  color: var(--primary);
+}
+
+/* Tab content */
+.tab-content {
+  display: none;
+  padding-top: 24px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.tab-intro {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-bottom: 28px;
+}
+
+/* Feature groups */
+.feature-group {
+  margin-bottom: 32px;
+}
+
+.group-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Feature items */
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  transition: background 0.15s;
+}
+
+.feature-item:hover {
+  background: var(--surface);
+}
+
+.feature-status {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+  font-size: 12px;
+}
+
+.feature-status.done {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.feature-status.planned {
+  background: var(--blue-bg);
+  color: var(--blue);
+  border: 1.5px dashed var(--blue);
+  font-size: 10px;
+}
+
+.feature-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.feature-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.feature-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.feature-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.feature-tag.new {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.feature-tag.core {
+  background: var(--primary-muted);
+  color: var(--primary);
+}
+
+/* Progress summary */
+.progress-summary {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.progress-bar-container {
+  flex: 1;
+}
+
+.progress-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-bar {
+  height: 8px;
+  background: var(--bg);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--success));
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+.progress-stat {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.progress-stat .number {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.progress-stat .label {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+/* Changelog */
+.changelog-entry {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 36px;
+}
+
+.changelog-entry::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 28px;
+  bottom: -36px;
+  width: 2px;
+  background: var(--border);
+}
+
+.changelog-entry:last-child::before {
+  display: none;
+}
+
+.changelog-dot {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid var(--bg);
+}
+
+.changelog-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.changelog-version {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.changelog-date {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.changelog-tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 20px;
+}
+
+.changelog-tag.initial {
+  background: var(--primary-muted);
+  color: var(--primary);
+}
+
+.changelog-tag.minor {
+  background: var(--blue-bg);
+  color: var(--blue);
+}
+
+.changelog-changes {
+  list-style: none;
+}
+
+.changelog-changes li {
+  font-size: 14px;
+  color: var(--text-muted);
+  padding: 4px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.changelog-changes li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-dim);
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.change-type {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+.change-type.added { background: var(--success-bg); color: var(--success); }
+.change-type.changed { background: var(--blue-bg); color: var(--blue); }
+.change-type.fixed { background: var(--warning-bg); color: var(--warning); }
+
+/* Roadmap */
+.roadmap-phase {
+  margin-bottom: 36px;
+}
+
+.phase-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.phase-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.phase-icon.next { background: var(--primary-muted); }
+.phase-icon.later { background: var(--blue-bg); }
+.phase-icon.future { background: var(--pink-bg); }
+
+.phase-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.phase-subtitle {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.roadmap-items {
+  display: grid;
+  gap: 8px;
+  padding-left: 48px;
+}
+
+.roadmap-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--surface);
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.roadmap-item:hover {
+  background: var(--surface-hover);
+}
+
+.roadmap-item-icon {
+  font-size: 14px;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.roadmap-item-text {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.roadmap-item-desc {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .about-page { padding: 0 16px 40px; }
+  .progress-summary { flex-direction: column; text-align: center; }
+  .roadmap-items { padding-left: 0; }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="logs.css">
+  <title>AI Monkey - Execution Logs</title>
+</head>
+<body>
+  <div class="logs-page">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <a href="../dashboard/dashboard.html" class="back-link" title="Back to Dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </a>
+        <span class="monkey-emoji">&#x1F435;</span>
+        <h1>Execution Logs</h1>
+        <span id="log-count" class="log-count">0 logs</span>
+      </div>
+      <div class="header-right">
+        <div class="auto-refresh-toggle">
+          <label class="toggle">
+            <input type="checkbox" id="auto-refresh">
+            <span class="toggle-slider"></span>
+          </label>
+          <span class="toggle-label">Auto-refresh</span>
+        </div>
+        <button id="clear-logs-btn" class="btn btn-subtle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+          </svg>
+          Clear Logs
+        </button>
+      </div>
+    </header>
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <div class="search-wrapper">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" id="search-input" class="search-input" placeholder="Search by script name or URL...">
+      </div>
+      <select id="status-filter" class="filter-select">
+        <option value="all">All statuses</option>
+        <option value="success">Success</option>
+        <option value="error">Error</option>
+        <option value="cached">Cached</option>
+      </select>
+    </div>
+
+    <!-- Log entries -->
+    <main class="logs-main">
+      <div id="logs-list" class="logs-list">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Empty state -->
+      <div id="empty-state" class="empty-state" hidden>
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.5">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+        <h2>No logs yet</h2>
+        <p>Scripts will show their execution history here.</p>
+      </div>
+
+      <!-- No results state -->
+      <div id="no-results" class="empty-state" hidden>
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.5">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <h2>No matching logs</h2>
+        <p>Try a different search term or filter.</p>
+      </div>
+
+      <!-- Load more -->
+      <button id="load-more-btn" class="btn btn-subtle load-more-btn" hidden>Load More</button>
+    </main>
+
+    <!-- Confirm modal -->
+    <div id="confirm-modal" class="modal-overlay" hidden>
+      <div class="modal">
+        <h3 class="modal-title">Clear Logs</h3>
+        <p class="modal-body">Are you sure you want to delete all execution logs? This cannot be undone.</p>
+        <div class="modal-actions">
+          <button id="confirm-cancel" class="btn btn-subtle">Cancel</button>
+          <button id="confirm-ok" class="btn btn-danger">Clear All</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" hidden></div>
+  </div>
+
+  <script src="logs.js" type="module"></script>
+</body>
+</html>

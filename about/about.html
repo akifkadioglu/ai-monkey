@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="about.css">
+  <title>AI Monkey - About</title>
+</head>
+<body>
+  <div class="about-page">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <a href="#" id="back-link" class="back-link" title="Back to Dashboard">&lsaquo;</a>
+        <span class="monkey-emoji">&#x1F435;</span>
+        <h1>AI Monkey</h1>
+        <span class="version-badge">v0.1.60</span>
+      </div>
+    </header>
+
+    <!-- Tab navigation -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="features">Features</button>
+      <button class="tab" data-tab="changelog">Changelog</button>
+      <button class="tab" data-tab="roadmap">Roadmap</button>
+    </nav>
+
+    <!-- Features tab -->
+    <main id="tab-features" class="tab-content active">
+      <p class="tab-intro">AI Monkey lets you automate any website with plain English. No code required.</p>
+
+      <section class="feature-group">
+        <h2 class="group-title">Core Engine</h2>
+        <div class="feature-list" id="features-core"></div>
+      </section>
+
+      <section class="feature-group">
+        <h2 class="group-title">Multi-Provider LLM</h2>
+        <div class="feature-list" id="features-llm"></div>
+      </section>
+
+      <section class="feature-group">
+        <h2 class="group-title">Script Management</h2>
+        <div class="feature-list" id="features-management"></div>
+      </section>
+
+      <section class="feature-group">
+        <h2 class="group-title">UI & UX</h2>
+        <div class="feature-list" id="features-ui"></div>
+      </section>
+
+      <div class="progress-summary" id="progress-summary"></div>
+    </main>
+
+    <!-- Changelog tab -->
+    <main id="tab-changelog" class="tab-content">
+      <div class="changelog" id="changelog"></div>
+    </main>
+
+    <!-- Roadmap tab -->
+    <main id="tab-roadmap" class="tab-content">
+      <p class="tab-intro">What's coming next for AI Monkey.</p>
+      <div class="roadmap" id="roadmap"></div>
+    </main>
+  </div>
+
+  <script src="about.js" type="module"></script>
+</body>
+</html>
