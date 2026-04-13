@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "AI Monkey",
-  "version": "0.1.60",
+  "version": "0.2.0",
   "description": "Run English-language scripts on any webpage, powered by AI",
   "permissions": [
     "storage",

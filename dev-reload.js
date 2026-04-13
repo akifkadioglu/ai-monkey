@@ -18,7 +18,6 @@
 const fs = require('fs');
 const path = require('path');
 const http = require('http');
-const { execFileSync } = require('child_process');
 
 const DIR = path.resolve(__dirname);
 const DEBOUNCE_MS = 500;
@@ -58,22 +57,11 @@ function notifyClients() {
 const WATCH_EXTENSIONS = new Set(['.js', '.html', '.css', '.json']);
 const IGNORE_DIRS = new Set(['node_modules', '.git', '.claude', 'icons']);
 
-const IGNORE_FILES = new Set(['manifest.json']); // Don't trigger on version bump
-
 function shouldWatch(filePath) {
   const ext = path.extname(filePath);
   if (!WATCH_EXTENSIONS.has(ext)) return false;
   const rel = path.relative(DIR, filePath);
-  if (IGNORE_FILES.has(rel)) return false;
   return !rel.split(path.sep).some(part => IGNORE_DIRS.has(part));
-}
-
-function bumpVersion() {
-  try {
-    execFileSync('node', [path.join(DIR, 'bump-version.js')], { stdio: 'inherit' });
-  } catch (err) {
-    console.error('  ⚠️  Version bump failed:', err.message);
-  }
 }
 
 function watchDir(dir) {
@@ -87,7 +75,6 @@ function watchDir(dir) {
       debounceTimer = setTimeout(() => {
         const rel = path.relative(DIR, fullPath);
         console.log(`\n  📝 Changed: ${rel}`);
-        bumpVersion();
         notifyClients();
       }, DEBOUNCE_MS);
     });
